@@ -1,0 +1,58 @@
+.header_toggle{
+  display: none;
+  color: #050a13;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+.header_logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header_logo_img {
+  width: 36px;
+  height: 36px;
+}
+
+.header_logo_title {
+  font-size: 1.8rem;
+}
+.header_logo_title a{
+  color: #1070e1;
+  font-weight: bold;
+}
+.header_menu {
+  display: flex;
+  gap: 4px;
+}
+
+.header_menu_item {
+  color: #000000;
+  font-weight: bold;
+  display: block;
+  padding: 8px 16px;
+  border-bottom: 1px solid transparent;
+}
+
+.header_menu_item:hover {
+  color: #1070e1;
+}
+
+.header_menu_item.active {
+  color: #1070e1;
+}

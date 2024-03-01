@@ -1,0 +1,61 @@
+.share_items {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.share_item {
+  background-color: #1b1e26;
+  width: 200px;
+  height: 200px;
+  border-radius: 1rem;
+  cursor: default;
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.38);
+}
+
+.share_item:hover {
+  transform: scale(1.1);
+}
+
+.jobs {
+  text-align: start;
+}
+
+.job {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.job_name {
+  color: #050a13;
+}
+
+.job_period {
+  color: #050a13;
+  font-size: 0.8rem;
+}
+
+/* Footer */
+#contact {
+  background-color: #050a13;
+  color: #ffffff;
+}
+
+.contact_links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.contact_link {
+  transition: color 250ms ease-in;
+}
+
+.contact_link:hover {
+  color: #1070e1;
+}
