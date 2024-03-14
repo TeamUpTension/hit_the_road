@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router-dom"
-import CourseList from "./pages/CourseList"
+import TripRouteWrite from "./pages/Main/TripRouteWrite"
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<CourseList />} />
+        <Route path="/" element={<TripRouteWrite />} />
+        <Route path="/route-write" element={<TripRouteWrite />} />
       </Routes>
     </>
   )
