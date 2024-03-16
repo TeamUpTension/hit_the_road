@@ -4,8 +4,8 @@ from django.template import loader
 
 # Create your views here.
 
-def api_tester(request):
-    template = loader.get_template('test.html')
+def login(request):
+    template = loader.get_template('login.html')
     return HttpResponse(
         template.render(request=request)
     )
