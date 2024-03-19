@@ -3,6 +3,7 @@ import GlobalStyles from "./styles/GlobalStyles"
 import { ThemeProvider } from "styled-components"
 import theme from "./styles/theme"
 import PlaceList from "./pages/Main/PlaceList"
+import PlaceDetail from "./pages/Main/PlaceDetail"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PlaceList />} />
           <Route path="/place-list" element={<PlaceList />} />
+          <Route path="/place-detail" element={<PlaceDetail />} />
         </Routes>
       </ThemeProvider>
     </>
