@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom"
 import GlobalStyles from "./styles/GlobalStyles"
-import TripRouteWrite from "./pages/Main/TripRouteWrite"
 import { ThemeProvider } from "styled-components"
 import theme from "./styles/theme"
+import PlaceList from "./pages/Main/PlaceList"
 
 function App() {
   return (
@@ -10,7 +10,8 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<TripRouteWrite />} />
+          <Route path="/" element={<PlaceList />} />
+          <Route path="/place-list" element={<PlaceList />} />
         </Routes>
       </ThemeProvider>
     </>
