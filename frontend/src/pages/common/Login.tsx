@@ -34,7 +34,7 @@ const LoginContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(./stacked-waves-haikei.svg);
+    background-image: url(./layered-peaks-haikei.svg);
     background-size: cover;
     height: 100vh;
 `;
