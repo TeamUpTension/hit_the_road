@@ -1,13 +1,31 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaRoute, FaMapMarkerAlt } from "react-icons/fa";
+import axios from "axios";
 
 const TabMenu: React.FC = () => {
+    const handleClick = () => {
+        console.log('버튼클릭');
+
+        // get 요청
+        axios.get('https://codingapple1.github.io/shop/data2.json').then((결과) => {
+            console.log(결과.data)
+        }).catch(() => {
+            console.log('실패함')
+        })
+
+        // post 요청
+        axios.post('URL', { name: 'kim' }).catch(() => {
+            console.log('실패함')
+        })
+    }
+
     return (
         <>
             <Tab>
                 <TabLink to="/route-list"><FaRoute /> 여행루트</TabLink>
                 <TabLinkOutline to="/place-list"><FaMapMarkerAlt /> 장소</TabLinkOutline>
+                <button onClick={() => handleClick()}>api 호출버튼</button>
             </Tab>
             <SubTitle>인기있는 여행장소를 둘러보세요</SubTitle>
             <ButtonBox>
@@ -17,7 +35,7 @@ const TabMenu: React.FC = () => {
                 <ButtonRound>중국</ButtonRound>
                 <ButtonRound>미국</ButtonRound>
                 <ButtonRound>호주</ButtonRound>
-                <ButtonRound>베트남</ButtonRound><dd></dd>
+                <ButtonRound>베트남</ButtonRound>
             </ButtonBox>
         </>
     )
