@@ -15,7 +15,10 @@ const TabMenu: React.FC = () => {
         })
 
         // post 요청
-        axios.post('URL', { name: 'kim' }).catch(() => {
+        axios.post('http://127.0.0.1:8000/api-test/').then((결과) => {
+            console.log(결과)
+            console.log(결과.data)
+        }).catch(() => {
             console.log('실패함')
         })
     }

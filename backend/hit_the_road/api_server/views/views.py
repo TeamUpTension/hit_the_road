@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.views.decorators.http import require_POST, require_GET
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.template import loader
+from django.db import connection
 from django.contrib.auth.models import User
-
-# Create your views here.
 
 def login(request):
     template = loader.get_template('login.html')
@@ -12,8 +13,6 @@ def login(request):
         template.render(request=request)
     )
 
-
-from django.db import connection
 def mysql_test(request):
     try:
         cursor = connection.cursor()
@@ -40,3 +39,13 @@ def mysql_test(request):
     return HttpResponse(
         template.render(request=request, context=context)
     )
+
+@require_POST
+def api_test(request):
+    print('okokok')
+    print(request.POST)
+    context = {
+        'data': 'data',
+    }
+
+    return JsonResponse(context)
