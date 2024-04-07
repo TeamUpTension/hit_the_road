@@ -49,9 +49,15 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
+    # cors 설정
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+     # cors 설정
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +66,29 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+]
+CORS_ALLOWED_ORIGINS = [
+    # 허용할 Origin 추가
+    "http://localhost:3000"
+]
+CORS_ALLOW_METHODS  =  [ 
+    'DELETE' , 
+    'GET' , 
+    'OPTIONS' , 
+    'PATCH' , 
+    'POST' , 
+    'PUT' , 
+]
+CORS_ALLOW_HEADERS  =  [ 
+    'accept' , 
+    'accept-encoding' , 
+    'authorization' , 
+    'content-type' , 
+    'dnt' , 
+    'origin' , 
+    'user-agent' , 
+    'x-csrftoken' , 
+    'x-requested-with' , 
 ]
 
 ROOT_URLCONF = 'hit_the_road.urls'
