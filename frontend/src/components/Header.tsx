@@ -2,13 +2,14 @@ import logo from '/logo_norwester.png';
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { FaRoute, FaSearch } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 
 const Header: React.FC = () => {
     return (
         <OuterBox>
             <InnerBox>
                 {/* left */}
-                <Link to="/home">
+                <Link to="/">
                     <LogoImg src={logo} alt="Hit the road logo" />
                 </Link>
                 {/* center */}
@@ -22,15 +23,15 @@ const Header: React.FC = () => {
                 </SearchWrapper>
                 {/* right */}
                 <div>
-                    <Link to="/route-write">
+                    <Link to="/my-route-write">
                         <ButtonOutline><FaRoute /> 내 루트</ButtonOutline>
                     </Link>
                     <Link to="/login">
-                        <ButtonOutline>로그인</ButtonOutline>
+                        <ButtonPrimary><FaSignInAlt /> 로그인</ButtonPrimary>
                     </Link>
-                    <Link to="/login">
-                        <Button>회원가입</Button>
-                    </Link>
+                    {/* <Link to="/login">
+                        <ButtonPrimary>회원가입</ButtonPrimary>
+                    </Link> */}
                 </div>
             </InnerBox>
         </OuterBox>
@@ -41,6 +42,7 @@ export default Header;
 
 const OuterBox = styled.header`
     background: white;
+    padding: 0 2vh;
 `;
 const InnerBox = styled.div`
     max-width: 1200px;
@@ -95,20 +97,18 @@ const Button = styled.button`
     padding: 0.6em;
     font-size: 0.9em;
     font-weight: 600;
+`;
+const ButtonPrimary =styled(Button)`
     background: black;
     color: white;
     &:hover {
         background: #3d3d3d;
     }
 `;
-const ButtonOutline = styled.button`
-    margin: 0.5em;
-    padding: 0.6em;
-    font-size: 0.9em;
-    font-weight: 600;
+const ButtonOutline =styled(Button)`
     background: white;
     color: black;
     &:hover {
-        background: #ffda23;
+        background: ${(props) => props.theme.colors.primary};;
     }
 `;
