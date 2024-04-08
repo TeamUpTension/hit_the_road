@@ -40,7 +40,7 @@ const Li = styled.li`
     &:nth-child(2), &:nth-child(3), &:nth-child(4) {
         cursor: pointer;
         &:hover {
-            color: #ffda23;
+            color: ${(props) => props.theme.colors.primary};
         }
     }
 `;

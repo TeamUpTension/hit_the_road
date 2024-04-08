@@ -16,11 +16,11 @@ interface Place {
     views: number;
 }
 
-const PlaceList: React.FC = () => {
+export default function RouteList () {
     const [placeList, setPlaceList] = useState<Place[]>([
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
+        { name: "서울 고궁투어", address: "한국, 서울", adds: 39, views: 150 },
+        { name: "부산 해운대 맛집", address: "한국, 서울", adds: 39, views: 150 },
+        { name: "10월 베트남 다낭", address: "한국, 서울", adds: 39, views: 150 },
         { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
     ]);
 
@@ -37,7 +37,7 @@ const PlaceList: React.FC = () => {
         <Container>
             <TabMenu />
             <Wrapper>
-                <Title>#서울</Title>
+                <Title>여행루트</Title>
                 <AlignSelect>
                     <option>최근등록순</option>
                     <option>추가순</option>
@@ -55,8 +55,6 @@ const PlaceList: React.FC = () => {
     )
 }
 
-export default PlaceList;
-
 interface PlaceItemProps {
     index: number;
     place: Place;
@@ -64,7 +62,7 @@ interface PlaceItemProps {
 }
 const PlaceItem: React.FC<PlaceItemProps> = ({ index, place, onAdd }) => {
     return (
-        <ItemLink to="/place-detail">
+        <ItemLink to="/route-detail">
             <ItemImage>
                 <KeepButton onClick={onAdd}>
                     <CiSquarePlus />
@@ -104,7 +102,7 @@ const List = styled.div`
     flex-wrap: wrap;
 `;
 const ItemLink = styled(Link)`
-    width: 25%;
+    width: 100%;
     padding: 1rem 0.3rem;
     cursor: pointer;
     &:hover {
@@ -113,7 +111,7 @@ const ItemLink = styled(Link)`
     }
 `;
 const ItemImage = styled.div`
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/1;
     background: lightgray;
     border-radius: 5px;
     /* 담기 버튼 배치를 위한 flex */
