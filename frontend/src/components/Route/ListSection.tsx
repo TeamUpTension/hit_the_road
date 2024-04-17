@@ -4,10 +4,16 @@ import { IoClose } from "react-icons/io5";
 import { FaPen } from "react-icons/fa";
 import { RxDragHandleVertical } from "react-icons/rx";
 import { FaRegImage } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { updatePlaceList } from "../../store/travelRouteSlice";
 
 export default function ListSection() {
   const [isEditable, setIsEditable] = useState(false);
   const [review, setReview] = useState('');
+
+  const 꺼내온거 = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
   function handleEdit() {
     if (isEditable) {
@@ -18,19 +24,25 @@ export default function ListSection() {
     setIsEditable(!isEditable)
   }
 
-
-
   const dragItem = useRef<number | null>(null);  // 드래그 할 아이템의 인덱스
   const dragOverItem = useRef<number | null>(null); // 드랍할 위치의 아이템의 인덱스
   // 아이템 리스트를 상태로 관리
-  const [list, setList] = useState<string[]>([
-    "경복궁",
-    "인사동",
-    "광장시장",
-    "남산타워",
-    "삼겹살",
-    "청계천",
-  ]);
+  // const [list, setList] = useState<string[]>([
+  //   "경복궁",
+  //   "인사동",
+  //   "광장시장",
+  //   "남산타워",
+  //   "삼겹살",
+  //   "청계천",
+  // ]);
+  interface Place {
+    name:string
+  }
+  const list = 꺼내온거.travelRoute.placeList;
+  const handleDragPlace = (placeList:Place[]) => {
+    dispatch(updatePlaceList(placeList))
+  }
+
   const [dragOverItemIndex, setDragOverItemIndex] = useState<number | null>(null); // 드롭할 위치의 아이템의 인덱스
 
 
@@ -65,7 +77,9 @@ export default function ListSection() {
     dragItem.current = null;
     dragOverItem.current = null;
     // 리스트 업데이트
-    setList(newList);
+    // setList(newList);
+    
+    handleDragPlace(newList);
     ;
 
     // 드롭 이벤트가 완료되면 dragOverItemIndex를 null로 설정하여 빨간 점선 효과를 제거
@@ -86,7 +100,7 @@ export default function ListSection() {
           <RxDragHandleVertical />
           <PlaceItem>
             <div>
-              <p>{item}</p>
+              <p>{item.name}</p>
               <div>
                 <StyledBtn onClick={() => setIsEditable(true)}><FaPen /></StyledBtn>
                 <StyledBtn><FaRegImage /></StyledBtn>
