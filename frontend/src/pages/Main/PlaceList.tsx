@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
 import { TiPlus } from "react-icons/ti";
 import { HiEye } from "react-icons/hi"
@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 import TabMenu from "../../components/TabMenu";
 import Footer from "../../components/Footer";
 import { Container } from "../../styles/StyledComponents";
+import axios from "axios";
 
 interface Place {
     name: string;
@@ -16,13 +17,18 @@ interface Place {
     views: number;
 }
 
-const PlaceList: React.FC = () => {
-    const [placeList, setPlaceList] = useState<Place[]>([
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-    ]);
+export default function PlaceList() {
+    let [placeList, setPlaceList] = useState<Place[]>([]);
+
+    useEffect(() => {
+        axios.get('/getPlaceList').then((결과) => {
+            console.log("요청성공")
+            setPlaceList(결과.data);
+            console.log(placeList)
+        }).catch(() => {
+            console.log('실패함')
+        })
+    }, []);// 처음 렌더링 때만 실행
 
     const handleAdd = (index: number) => {
         setPlaceList(prevState =>
@@ -45,17 +51,19 @@ const PlaceList: React.FC = () => {
                 </AlignSelect>
             </Wrapper>
             <List>
-                {placeList.map((item, i) => (
-                    <PlaceItem key={i} index={i} place={item} onAdd={() => handleAdd(i)} />
-                ))}
+                {
+                    placeList &&
+                    placeList.map((item, i) => (
+                        // item.name
+                        <PlaceItem key={i} index={i} place={item} onAdd={() => handleAdd(i)} />
+                    ))
+                }
             </List>
         </Container>
         <Footer />
     </>
     )
 }
-
-export default PlaceList;
 
 interface PlaceItemProps {
     index: number;
@@ -126,7 +134,7 @@ const KeepButton = styled.button`
     font-size: 2.2rem;
     color: white;
 `;
-const ItemTitle = styled.p`
+const ItemTitle = styled.div`
     font-size: 0.9rem;
     font-weight: bold;
     margin-top: 0.8rem;
