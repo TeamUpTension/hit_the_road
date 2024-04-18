@@ -8,28 +8,34 @@ import Header from "../../components/Header";
 import TabMenu from "../../components/TabMenu";
 import Footer from "../../components/Footer";
 import { Container } from "../../styles/StyledComponents";
+import { useEffect } from "react";
+import axios from "axios";
 
-interface Place {
+interface Route {
     name: string;
     address: string;
     adds: number;
     views: number;
 }
 
-export default function RouteList () {
-    const [placeList, setPlaceList] = useState<Place[]>([
-        { name: "서울 고궁투어", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "부산 해운대 맛집", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "10월 베트남 다낭", address: "한국, 서울", adds: 39, views: 150 },
-        { name: "낫띵리튼", address: "한국, 서울", adds: 39, views: 150 },
-    ]);
+export default function RouteList() {
+    let [routeList, setRouteList] = useState<Route[]>([]);
+
+    useEffect(() => {
+        axios.get('/getRouteList').then((결과) => {
+            console.log("요청성공")
+            setRouteList(결과.data);
+        }).catch(() => {
+            console.log('실패함')
+        })
+    }, []); // 처음 렌더링 때만 실행
 
     const handleAdd = (index: number) => {
-        setPlaceList(prevState =>
-            prevState.map((place, i) =>
-                i === index ? { ...place, adds: place.adds + 1 } : place
-            )
-        );
+        // setPlaceList(prevState =>
+        //     prevState.map((place, i) =>
+        //         i === index ? { ...place, adds: place.adds + 1 } : place
+        //     )
+        // );
     };
 
     return (<>
@@ -45,9 +51,11 @@ export default function RouteList () {
                 </AlignSelect>
             </Wrapper>
             <List>
-                {placeList.map((item, i) => (
-                    <PlaceItem key={i} index={i} place={item} onAdd={() => handleAdd(i)} />
-                ))}
+                {
+                    routeList && routeList.map((item, i) => (
+                        <RouteItem key={i} index={i} route={item} onAdd={() => handleAdd(i)} />
+                    ))
+                }
             </List>
         </Container>
         <Footer />
@@ -55,12 +63,12 @@ export default function RouteList () {
     )
 }
 
-interface PlaceItemProps {
+interface RouteItemProps {
     index: number;
-    place: Place;
+    route: Route;
     onAdd: () => void;
 }
-const PlaceItem: React.FC<PlaceItemProps> = ({ index, place, onAdd }) => {
+const RouteItem: React.FC<RouteItemProps> = ({ index, route, onAdd }) => {
     return (
         <ItemLink to="/route-detail">
             <ItemImage>
@@ -69,13 +77,13 @@ const PlaceItem: React.FC<PlaceItemProps> = ({ index, place, onAdd }) => {
                 </KeepButton>
             </ItemImage>
             <ItemTitle>
-                {place.name}
+                {route.name}
                 <div>
-                    <span><TiPlus /> {place.adds}&nbsp;&nbsp;&nbsp;</span>
-                    <span><HiEye /> {place.views}</span>
+                    <span><TiPlus /> {route.adds}&nbsp;&nbsp;&nbsp;</span>
+                    <span><HiEye /> {route.views}</span>
                 </div>
             </ItemTitle>
-            <ItemSubTitle>{place.address}</ItemSubTitle>
+            <ItemSubTitle>{route.address}</ItemSubTitle>
         </ItemLink>
     );
 }
@@ -124,7 +132,7 @@ const KeepButton = styled.button`
     font-size: 2.2rem;
     color: white;
 `;
-const ItemTitle = styled.p`
+const ItemTitle = styled.div`
     font-size: 0.9rem;
     font-weight: bold;
     margin-top: 0.8rem;
