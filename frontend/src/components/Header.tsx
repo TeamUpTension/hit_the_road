@@ -1,4 +1,4 @@
-import logo from '/logo_norwester.png';
+import logo from '/img/logo_norwester.png';
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { FaRoute, FaSearch } from "react-icons/fa";
