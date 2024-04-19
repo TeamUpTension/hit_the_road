@@ -2,7 +2,7 @@
 
 1. 저장소를 복제합니다.
 ```
-git clone
+git clone 저장소 주소
 ```
 
 2. frontend 디렉토리로 이동합니다.
@@ -21,12 +21,4 @@ npm run dev
 ```
 
 5. 웹 브라우저에서 http://localhost:3000으로 접속하여 앱을 확인합니다.
-
-### 기술스택
-- React
-- Typescript
-- Vite
-- React Router
-- Zustand
-- Styled Components
 
