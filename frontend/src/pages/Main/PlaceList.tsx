@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { plusAdds, setPlaceList } from "../../store/placesSlice";
+import { RootState } from "../../store/store";
 import { CiSquarePlus } from "react-icons/ci";
 import { TiPlus } from "react-icons/ti";
 import { HiEye } from "react-icons/hi"
@@ -8,35 +12,22 @@ import Header from "../../components/Header";
 import TabMenu from "../../components/TabMenu";
 import Footer from "../../components/Footer";
 import { Container } from "../../styles/StyledComponents";
-import axios from "axios";
-
-interface Place {
-    name: string;
-    address: string;
-    adds: number;
-    views: number;
-}
+import { Place } from "../../types/d";
 
 export default function PlaceList() {
-    let [placeList, setPlaceList] = useState<Place[]>([]);
+    // 서버에 장소 목록 요청
+    const placeList = useSelector((state: RootState) => state.placesSlice.places);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get('/getPlaceList').then((결과) => {
-            console.log("요청성공")
-            setPlaceList(결과.data);
-            console.log(placeList)
+            console.log("/getPlaceList 요청")
+            dispatch(setPlaceList(결과.data));
         }).catch(() => {
             console.log('실패함')
         })
     }, []);// 처음 렌더링 때만 실행
-
-    const handleAdd = (index: number) => {
-        setPlaceList(prevState =>
-            prevState.map((place, i) =>
-                i === index ? { ...place, adds: place.adds + 1 } : place
-            )
-        );
-    };
+    // }, [dispatch]);// 처음 렌더링 때만 실행
 
     return (<>
         <Header />
@@ -54,8 +45,7 @@ export default function PlaceList() {
                 {
                     placeList &&
                     placeList.map((item, i) => (
-                        // item.name
-                        <PlaceItem key={i} index={i} place={item} onAdd={() => handleAdd(i)} />
+                        <PlaceItem key={i} index={i} place={item} />
                     ))
                 }
             </List>
@@ -68,13 +58,17 @@ export default function PlaceList() {
 interface PlaceItemProps {
     index: number;
     place: Place;
-    onAdd: () => void;
 }
-const PlaceItem: React.FC<PlaceItemProps> = ({ index, place, onAdd }) => {
+const PlaceItem: React.FC<PlaceItemProps> = ({ index, place }) => {
+    let dispatch = useDispatch();
     return (
         <ItemLink to="/place-detail">
-            <ItemImage>
-                <KeepButton onClick={onAdd}>
+            <ItemImage $imgUrl={place.imgUrl}>
+                <KeepButton onClick={(e) => {
+                    e.stopPropagation;
+                    console.log("버튼클릭");
+                    dispatch(plusAdds(index));
+                }}>
                     <CiSquarePlus />
                 </KeepButton>
             </ItemImage>
@@ -116,13 +110,14 @@ const ItemLink = styled(Link)`
     padding: 1rem 0.3rem;
     cursor: pointer;
     &:hover {
-        /* background: #eeeeed; */
-        /* box-shadow: 0 0 5px; */
     }
 `;
-const ItemImage = styled.div`
-    aspect-ratio: 3/4;
+const ItemImage = styled.div<{ $imgUrl: string }>`
     background: lightgray;
+    background-image: url(${props => props.$imgUrl});
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 3/4;
     border-radius: 5px;
     /* 담기 버튼 배치를 위한 flex */
     display: flex;

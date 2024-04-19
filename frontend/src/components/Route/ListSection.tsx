@@ -6,15 +6,31 @@ import { RxDragHandleVertical } from "react-icons/rx";
 import { FaRegImage } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { updatePlaceList } from "../../store/travelRouteSlice";
+import { setPlaceList, deletePlace, setTitle, setDescription, setSelectedPlace } from "../../store/myRouteSlice";
+import { Place } from "../../types/d";
 
-export default function ListSection() {
+const ListSection: React.FC = () => {
+
+  const myRoute = useSelector((state: RootState) => state.myRouteSlice);
+  const dispatch = useDispatch();
+  const handleDragPlace = (places: Place[]) => {
+    dispatch(setPlaceList(places))
+  }
+  const handleDeletePlace = (placeName: string) => {
+    dispatch(deletePlace(placeName));
+  }
+  const handleSetTitle = (title: string) => {
+    dispatch(setTitle(title));
+  }
+  const handleSetDescription = (description: string) => {
+    dispatch(setDescription(description));
+  }
+  const handleSelectPlace = (placeName: string) => {
+    dispatch(setSelectedPlace(placeName));
+  }
+
   const [isEditable, setIsEditable] = useState(false);
   const [review, setReview] = useState('');
-
-  const 꺼내온거 = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
-
   function handleEdit() {
     if (isEditable) {
       // 수정상태에서 클릭하면 리뷰 저장 & 텍스트 상태로 전환
@@ -26,32 +42,12 @@ export default function ListSection() {
 
   const dragItem = useRef<number | null>(null);  // 드래그 할 아이템의 인덱스
   const dragOverItem = useRef<number | null>(null); // 드랍할 위치의 아이템의 인덱스
-  // 아이템 리스트를 상태로 관리
-  // const [list, setList] = useState<string[]>([
-  //   "경복궁",
-  //   "인사동",
-  //   "광장시장",
-  //   "남산타워",
-  //   "삼겹살",
-  //   "청계천",
-  // ]);
-  interface Place {
-    name:string
-  }
-  const list = 꺼내온거.travelRoute.placeList;
-  const handleDragPlace = (placeList:Place[]) => {
-    dispatch(updatePlaceList(placeList))
-  }
-
   const [dragOverItemIndex, setDragOverItemIndex] = useState<number | null>(null); // 드롭할 위치의 아이템의 인덱스
-
-
   // 드래그 시작 시 호출되는 함수
   const dragStart = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     // 드래그하는 아이템의 인덱스 저장
     dragItem.current = position
   }
-
   // 드래그 중인 아이템이 다른 아이템 위에 올라갔을 때 호출되는 함수
   const dragEnter = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     // 드롭할 위치의 아이템의 인덱스 저장
@@ -59,14 +55,12 @@ export default function ListSection() {
     setDragOverItemIndex(position);
     // console.log(e.currentTarget.innerHTML);
   }
-
   // 아이템을 드랍했을 때 호출되는 함수
   const drop = () => {
     // 드래그 중인 아이템 또는 드롭할 위치가 없을 경우 종료
     if (dragItem.current === null || dragOverItem.current === null) return;
-
     // 아이템 리스트를 복제하여 수정
-    const newList = [...list]
+    const newList = [...myRoute.placeList]
     // 드래그하는 아이템의 값 저장
     const dragItemValue = newList[dragItem.current];
     // 기존 위치에서 아이템 삭제
@@ -78,7 +72,7 @@ export default function ListSection() {
     dragOverItem.current = null;
     // 리스트 업데이트
     // setList(newList);
-    
+
     handleDragPlace(newList);
     ;
 
@@ -88,7 +82,7 @@ export default function ListSection() {
   return (<TimelineUl>
     {
       // 각각의 아이템에 드래그 앤 드롭 이벤트 추가
-      list && list.map((item, index) => (
+      myRoute.placeList && myRoute.placeList.map((item, index) => (
         <TimelineLi key={index} draggable
           isDragging={index === dragItem.current}
           isDragOver={index === dragOverItemIndex}
@@ -127,6 +121,7 @@ export default function ListSection() {
     }
   </TimelineUl>)
 }
+export default ListSection;
 
 
 const StyledBtn = styled.button`
