@@ -15,7 +15,6 @@ export default function ListSectionRead() {
 
   return (<TimelineUl>
     {
-      // 각각의 아이템에 드래그 앤 드롭 이벤트 추가
       list && list.map((item, index) => (
         <TimelineLi key={index} >
           <p>{item}</p>

@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { travelRouteSlice } from "./travelRouteSlice";
+import { myRouteSlice } from "./myRouteSlice";
+import { placesSlice } from "./placesSlice";
+import { routesSlice } from "./routesSlice";
 
 let store = configureStore({
   reducer: {
-    travelRoute: travelRouteSlice.reducer,
+    myRouteSlice: myRouteSlice.reducer,
+    placesSlice: placesSlice.reducer,
+    routesSlice: routesSlice.reducer,
   },
 });
 

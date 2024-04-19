@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
-import { TiPlus } from "react-icons/ti";
+import { GoHeartFill } from "react-icons/go";
 import { HiEye } from "react-icons/hi"
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -10,33 +9,24 @@ import Footer from "../../components/Footer";
 import { Container } from "../../styles/StyledComponents";
 import { useEffect } from "react";
 import axios from "axios";
-
-interface Route {
-    name: string;
-    address: string;
-    adds: number;
-    views: number;
-}
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { setRouteList, toogleLikes } from "../../store/routesSlice";
+import { Route } from "../../types/d";
 
 export default function RouteList() {
-    let [routeList, setRouteList] = useState<Route[]>([]);
+    const routeList = useSelector((state: RootState) => state.routesSlice.routes);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get('/getRouteList').then((결과) => {
-            console.log("요청성공")
-            setRouteList(결과.data);
+            console.log("/getRouteList 요청")
+            dispatch(setRouteList(결과.data));
+            // setRouteList(결과.data);
         }).catch(() => {
             console.log('실패함')
         })
     }, []); // 처음 렌더링 때만 실행
-
-    const handleAdd = (index: number) => {
-        // setPlaceList(prevState =>
-        //     prevState.map((place, i) =>
-        //         i === index ? { ...place, adds: place.adds + 1 } : place
-        //     )
-        // );
-    };
 
     return (<>
         <Header />
@@ -53,7 +43,7 @@ export default function RouteList() {
             <List>
                 {
                     routeList && routeList.map((item, i) => (
-                        <RouteItem key={i} index={i} route={item} onAdd={() => handleAdd(i)} />
+                        <RouteItem key={i} index={i} route={item} />
                     ))
                 }
             </List>
@@ -66,20 +56,23 @@ export default function RouteList() {
 interface RouteItemProps {
     index: number;
     route: Route;
-    onAdd: () => void;
 }
-const RouteItem: React.FC<RouteItemProps> = ({ index, route, onAdd }) => {
+const RouteItem: React.FC<RouteItemProps> = ({ index, route }) => {
+    const dispatch = useDispatch();
     return (
         <ItemLink to="/route-detail">
-            <ItemImage>
-                <KeepButton onClick={onAdd}>
+            <ItemImage $imgUrl={route.imgUrl}>
+                <KeepButton onClick={(e) => {
+                    e.stopPropagation;
+                    dispatch(toogleLikes(index));
+                }}>
                     <CiSquarePlus />
                 </KeepButton>
             </ItemImage>
             <ItemTitle>
-                {route.name}
+                {route.title}
                 <div>
-                    <span><TiPlus /> {route.adds}&nbsp;&nbsp;&nbsp;</span>
+                    <span><GoHeartFill /> {route.likes}&nbsp;&nbsp;&nbsp;</span>
                     <span><HiEye /> {route.views}</span>
                 </div>
             </ItemTitle>
@@ -114,13 +107,14 @@ const ItemLink = styled(Link)`
     padding: 1rem 0.3rem;
     cursor: pointer;
     &:hover {
-        /* background: #eeeeed; */
-        /* box-shadow: 0 0 5px; */
     }
 `;
-const ItemImage = styled.div`
-    aspect-ratio: 4/1;
+const ItemImage = styled.div<{ $imgUrl: string }>`
     background: lightgray;
+    background-image: url(${props => props.$imgUrl});
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 4/1;
     border-radius: 5px;
     /* 담기 버튼 배치를 위한 flex */
     display: flex;
