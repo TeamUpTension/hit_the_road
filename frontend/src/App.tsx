@@ -9,6 +9,7 @@ import RouteDetail from "./pages/main/RouteDetail"
 import MyRouteList from "./pages/main/MyRouteList"
 import MyRouteWrite from "./pages/main/MyRouteWrite"
 import Login from "./pages/common/Login"
+import NotFound from "./pages/common/NotFound"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/my-route-list" element={<MyRouteList />} />
           <Route path="/my-route-write" element={<MyRouteWrite />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>
     </>
