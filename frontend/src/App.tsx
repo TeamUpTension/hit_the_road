@@ -17,13 +17,13 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<PlaceList />} />
-          <Route path="/place-list" element={<PlaceList />} />
-          <Route path="/place-detail" element={<PlaceDetail />} />
-          <Route path="/route-list" element={<RouteList />} />
-          <Route path="/route-detail" element={<RouteDetail />} />
-          <Route path="/my-route-list" element={<MyRouteList />} />
-          <Route path="/my-route-write" element={<MyRouteWrite />} />
+          <Route path="/" element={<RouteList />} />
+          <Route path="/places" element={<PlaceList />} />
+          <Route path="/places/:id" element={<PlaceDetail />} />
+          <Route path="/routes" element={<RouteList />} />
+          <Route path="/routes/:id" element={<RouteDetail />} />
+          <Route path="/my-route" element={<MyRouteList />} />
+          <Route path="/my-route/write" element={<MyRouteWrite />} />
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

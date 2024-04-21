@@ -26,8 +26,8 @@ const TabMenu: React.FC = () => {
     return (
         <>
             <Tab>
-                <TabLink to="/route-list"><FaRoute /> 여행루트</TabLink>
-                <TabLinkOutline to="/place-list"><FaMapMarkerAlt /> 장소</TabLinkOutline>
+                <TabLink to="/routes"><FaRoute /> 여행루트</TabLink>
+                <TabLinkOutline to="/places"><FaMapMarkerAlt /> 장소</TabLinkOutline>
                 <button onClick={() => handleClick()}>api 호출버튼</button>
             </Tab>
             <SubTitle>인기있는 여행장소를 둘러보세요</SubTitle>

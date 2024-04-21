@@ -23,7 +23,7 @@ const Header: React.FC = () => {
                 </SearchWrapper>
                 {/* right */}
                 <div>
-                    <Link to="/my-route-write">
+                    <Link to="/my-route/write">
                         <ButtonOutline><FaRoute /> 내 루트</ButtonOutline>
                     </Link>
                     <Link to="/login">
