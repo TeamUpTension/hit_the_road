@@ -5,7 +5,7 @@ export interface Place {
   adds: number;
   views: number;
   imgUrl: string;
-  myReview?: string;
+  review?: string;
 }
 
 export interface Route {
@@ -16,10 +16,27 @@ export interface Route {
   likes: number;
   views: number;
   imgUrl: string;
+  placeList: Place[];
 }
 
 export interface MyRoute {
   title?: string;
   description?: string;
   placeList: []
+}
+
+export interface ReviewState {
+  userId: string,
+  content: string,
+}
+export interface PlaceDetailState {
+  name: string,
+  address: string,
+  reviews: ReviewState[]
+}
+export interface RouteDetailState {
+  id: string,
+  title: string,
+  description?: string,
+  address?: string
 }
