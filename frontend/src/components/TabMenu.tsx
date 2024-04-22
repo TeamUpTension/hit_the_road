@@ -1,36 +1,23 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaRoute, FaMapMarkerAlt } from "react-icons/fa";
-import axios from "axios";
+import { useState } from "react";
 
 const TabMenu: React.FC = () => {
-    const handleClick = () => {
-        console.log('버튼클릭');
+    const location = useLocation();
+    const [activeTab, setActiveTab] = useState(location.pathname);
 
-        // get 요청
-        axios.get('https://codingapple1.github.io/shop/data2.json').then((결과) => {
-            console.log(결과.data)
-        }).catch(() => {
-            console.log('실패함')
-        })
-
-        // post 요청
-        axios.post('http://127.0.0.1:8000/api-test/').then((결과) => {
-            console.log(결과)
-            console.log(결과.data)
-        }).catch(() => {
-            console.log('실패함')
-        })
-    }
+    const handleTabClick = (path: string) => {
+        setActiveTab(path);
+    };
 
     return (
         <>
             <Tab>
-                <TabLink to="/routes"><FaRoute /> 여행루트</TabLink>
-                <TabLinkOutline to="/places"><FaMapMarkerAlt /> 장소</TabLinkOutline>
-                <button onClick={() => handleClick()}>api 호출버튼</button>
+                <TabLink to="/routes" onClick={() => handleTabClick('/routes')} isActive={activeTab === '/routes'}><FaRoute /> 여행루트</TabLink>
+                <TabLink to="/places" onClick={() => handleTabClick('/places')} isActive={activeTab === '/places'}><FaMapMarkerAlt /> 장소</TabLink>
             </Tab>
-            <SubTitle>인기있는 여행장소를 둘러보세요</SubTitle>
+            {activeTab === '/routes' ? <SubTitle>여행 루트를 탐색해보세요</SubTitle> : <SubTitle>인기있는 여행장소를 둘러보세요</SubTitle>}
             <ButtonBox>
                 <ButtonRound>한국</ButtonRound>
                 <ButtonRound>일본</ButtonRound>
@@ -50,22 +37,14 @@ const Tab = styled.div`
     display: flex;
     padding: 20px 0;
 `;
-const TabLink = styled(Link)`
+const TabLink = styled(Link) <{ isActive: boolean }>`
     min-width: 120px;
     padding: 0.5em;
     font-size: 1em;
-    background: black;
-    color: white;
+    background: ${({ isActive }) => (isActive ? "black" : "white")};
+    color: ${({ isActive }) => (isActive ? "white" : "black")};
     border: 1px solid black;
     text-align: center;
-    `;
-const TabLinkOutline = styled(Link)`
-    min-width: 120px;
-    padding: 0.5em;
-    font-size: 1em;
-    background: white;
-    color: black;
-    border: 1px solid black;
     text-align: center;
 `;
 const SubTitle = styled.h5`
