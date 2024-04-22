@@ -56,7 +56,7 @@ const NavBox = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 0.5em;
+    padding: 0.8rem 0.5rem;
     font-size: 1.1rem;
     font-weight: bold;
     button {

@@ -129,14 +129,33 @@ export const handlers = [
       id: 4,
       name: "인사동",
       address: "한국, 서울",
+      openingHours: "9am - 18pm",
       adds: 39,
       views: 150,
-      imgUrl: "./routeImg/logo_norwester.png",
       reviews: [
         {
-          userId: "user1234",
+          userName: "user1234",
           content: "다양한 소품을 구경할 수 있어요",
         },
+        {
+          userName: "user1234",
+          content: "다양한 소품을 구경할 수 있어요",
+        },
+        {
+          userName: "user1234",
+          content: "다양한 소품을 구경할 수 있어요",
+        },
+        {
+          userName: "user1234",
+          content: "다양한 소품을 구경할 수 있어요",
+        },
+      ],
+      images: [
+        "/routeImg/logo_norwester.png",
+        "/routeImg/logo_norwester.png",
+        "/routeImg/logo_norwester.png",
+        "/routeImg/logo_norwester.png",
+        "/routeImg/logo_norwester.png",
       ],
     });
   }),

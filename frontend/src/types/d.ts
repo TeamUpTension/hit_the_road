@@ -1,11 +1,18 @@
+export interface Review {
+  id: number;
+  userName: string;
+  content : string;
+}
 export interface Place {
   id: number;
   name: string;
   address: string;
+  openingHours: string;
   adds: number;
   views: number;
   imgUrl: string;
-  review?: string;
+  reviews?: Review[];
+  images: string[];
 }
 
 export interface Route {
