@@ -1,6 +1,6 @@
-import { Container } from "../../styles/StyledComponents";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import { Container } from "@/styles/StyledComponents";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const NotFound: React.FC = () => {
     return (<>

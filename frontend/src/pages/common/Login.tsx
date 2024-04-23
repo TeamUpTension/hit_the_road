@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { RoundButton } from "../../styles/StyledComponents";
+import { RoundButton } from "@/styles/StyledComponents";
 import { FaRegUser } from "react-icons/fa";
 import { FaUnlockKeyhole } from "react-icons/fa6";
 import { TbLockSearch } from "react-icons/tb";

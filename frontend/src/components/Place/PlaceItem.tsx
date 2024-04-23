@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Place } from "../../types/d";
+import { Place } from "@/types/d";
 import { CiSquarePlus } from "react-icons/ci";
 import { TiPlus } from "react-icons/ti";
 import { HiEye } from "react-icons/hi"
-import { addPlace } from "../../store/myRouteSlice";
+import { addPlace } from "@/store/myRouteSlice";
 
 interface PlaceItemProps {
     place: Place;

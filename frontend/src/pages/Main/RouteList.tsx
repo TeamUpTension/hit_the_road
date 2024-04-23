@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Route } from "../../types/d";
-import { Container } from "../../styles/StyledComponents";
-import TabMenu from "../../components/TabMenu";
-import Header from "../../components/Header";
-import RouteItem from "../../components/Route/RouteItem";
+import { Route } from "@/types/d";
+import { Container } from "@/styles/StyledComponents";
+import TabMenu from "@/components/TabMenu";
+import Header from "@/components/Header";
+import RouteItem from "@/components/Route/RouteItem";
 
 const RouteList: React.FC = () => {
   const [items, setItems] = useState<Route[]>([]);

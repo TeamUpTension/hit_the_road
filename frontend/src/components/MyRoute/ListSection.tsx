@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
-import styled from "styled-components";;
+import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
 import { FaPen } from "react-icons/fa";
 import { RxDragHandleVertical } from "react-icons/rx";
 import { FaRegImage } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { setPlaceList, deletePlace, setPlaceReview } from "../../store/myRouteSlice";
-import { MyRoutePlace } from "../../types/d";
-import { StyledBtn, StyledInput } from "../../styles/StyledComponents";
+import { RootState } from "@/store/store";
+import { setPlaceList, deletePlace, setPlaceReview } from "@/store/myRouteSlice";
+import { MyRoutePlace } from "@/types/d";
+import { StyledBtn, StyledInput } from "@/styles/StyledComponents";
 
 const ListSection: React.FC = () => {
 

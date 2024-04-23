@@ -3,31 +3,31 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useState } from 'react';
 
 interface ImageSliderProps {
-    images: string[];
+  images: string[];
 }
 
 const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const nextSlide = () => {
-        setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
-    };
+  const nextSlide = () => {
+    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+  };
 
-    const prevSlide = () => {
-        setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
-    };
+  const prevSlide = () => {
+    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+  };
 
-    return (
-        <SlideContainer>
-            <SlideContent style={{ transform: `translateX(-${currentIndex * (100 / images.length)}%)`, width: `${images.length * 100}%` }}>
-                {images.map((image, index) => (
-                    <SlideItem key={index} src={image} alt={`Slide ${index}`} />
-                ))}
-            </SlideContent>
-            <PrevButton onClick={prevSlide}><FaChevronLeft /></PrevButton>
-            <NextButton onClick={nextSlide}><FaChevronRight /></NextButton>
-        </SlideContainer>
-    );
+  return (
+    <SlideContainer>
+      <SlideContent style={{ transform: `translateX(-${currentIndex * (100 / images.length)}%)`, width: `${images.length * 100}%` }}>
+        {images.map((image, index) => (
+          <SlideItem key={index} src={image} alt={`Slide ${index}`} />
+        ))}
+      </SlideContent>
+      <PrevButton onClick={prevSlide}><FaChevronLeft /></PrevButton>
+      <NextButton onClick={nextSlide}><FaChevronRight /></NextButton>
+    </SlideContainer>
+  );
 };
 
 const SlideContainer = styled.div`

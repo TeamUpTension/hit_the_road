@@ -1,16 +1,16 @@
 
 import { useNavigate } from "react-router-dom";
-import { Container, Description, FixedButton, NavBox, NavButton, StyledInput, Wrapper, WrapperAlignCenter } from "../../styles/StyledComponents";
-import ListSection from "../../components/MyRoute/ListSection";
-import MapSection from "../../components/MyRoute/MapSection";
+import { Container, Description, FixedButton, NavBox, NavButton, StyledInput, Wrapper, WrapperAlignCenter } from "@/styles/StyledComponents";
+import ListSection from "@/components/MyRoute/ListSection";
+import MapSection from "@/components/MyRoute/MapSection";
 import { FaCheck } from "react-icons/fa";
 import { FaChevronLeft, FaList } from "react-icons/fa6";
 import { useState } from "react";
-import { StyledBtn } from "../../styles/StyledComponents";
+import { StyledBtn } from "@/styles/StyledComponents";
 import { FaPen } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setDescription, setTitle } from "../../store/myRouteSlice";
-import { RootState } from "../../store/store";
+import { setDescription, setTitle } from "@/store/myRouteSlice";
+import { RootState } from "@/store/store";
 
 export default function MyRouteWrite() {
 

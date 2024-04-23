@@ -1,13 +1,13 @@
-import ListSectionRead from "../../components/Route/ListSectionRead";
-import MapSectionRead from "../../components/Route/MapSectionRead";
+import ListSectionRead from "@/components/Route/ListSectionRead";
+import MapSectionRead from "@/components/Route/MapSectionRead";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Description, NavBox, NavButton, Wrapper } from "../../styles/StyledComponents";
+import { Container, Description, NavBox, NavButton, Wrapper } from "@/styles/StyledComponents";
 // import { FaShareAlt } from "react-icons/fa";
 // import { FaCheck } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Route } from "../../types/d";
+import { Route } from "@/types/d";
 
 const RouteDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();

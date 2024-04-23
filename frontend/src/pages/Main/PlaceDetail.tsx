@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { FixedButton, Container, NavBox, NavButton } from "../../styles/StyledComponents";
+import { FixedButton, Container, NavBox, NavButton } from "@/styles/StyledComponents";
 import { FaChevronLeft, FaRegMap } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
 import { FaMapMarkerAlt, FaShareAlt } from "react-icons/fa";
 import { TiPlus } from "react-icons/ti";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Place, Review } from "../../types/d";
-import ImageSlider from "../../components/Place/ImageSlider";
+import { Place, Review } from "@/types/d";
+import ImageSlider from "@/components/Place/ImageSlider";
 
 const PlaceDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
