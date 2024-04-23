@@ -53,16 +53,12 @@ const SearchResultLi = styled.li`
         font-size: 0.8rem;
     }
 `;
-
-
 const Div = styled.div`
     background: white;
     display: flex;
     align-items: center;
     padding: 0.2rem 0.8rem;
     margin: 1rem 1rem 0 1rem;
-
-    
     color: grey;
 
     /* width: 80%; */

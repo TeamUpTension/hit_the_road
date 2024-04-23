@@ -23,7 +23,7 @@ export interface Route {
   likes: number;
   views: number;
   imgUrl: string;
-  placeList: Place[];
+  placeList: MyRoutePlace[];
 }
 
 export interface MyRoutePlace {

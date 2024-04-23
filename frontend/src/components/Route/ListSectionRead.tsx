@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { Place } from "../../types/d";
+import { MyRoutePlace } from "../../types/d";
 
 interface ListSectionReadProps {
-  placeList: Place[];
+  placeList: MyRoutePlace[];
 }
 
 const ListSectionRead: React.FC<ListSectionReadProps> = ({ placeList }) => {
   return (
     <TimelineUl>
       {
-        placeList && placeList.map((item, index) => (
+        placeList && placeList.map((item: MyRoutePlace) => (
           <li key={item.id} >
             <p>{item.name}</p>
             {item.review && <p>{item.review}</p>}

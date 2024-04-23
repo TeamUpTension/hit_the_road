@@ -1,8 +1,8 @@
 
 import { useNavigate } from "react-router-dom";
 import { Container, Description, FixedButton, NavBox, Wrapper } from "../../styles/StyledComponents";
-import ListSection from "../../components/Route/ListSection";
-import MapSection from "../../components/Route/MapSection";
+import ListSection from "../../components/MyRoute/ListSection";
+import MapSection from "../../components/MyRoute/MapSection";
 import { FaCheck } from "react-icons/fa";
 import { FaChevronLeft, FaList } from "react-icons/fa6";
 
