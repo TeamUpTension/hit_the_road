@@ -1,7 +1,7 @@
 export interface Review {
   id: number;
   userName: string;
-  content : string;
+  content: string;
 }
 export interface Place {
   id: number;
@@ -26,24 +26,30 @@ export interface Route {
   placeList: Place[];
 }
 
+export interface MyRoutePlace {
+  id: number;
+  name: string;
+  review: string;
+}
+
 export interface MyRoute {
   title?: string;
   description?: string;
-  placeList: []
+  placeList: MyRoutePlace[];
 }
 
 export interface ReviewState {
-  userId: string,
-  content: string,
+  userId: string;
+  content: string;
 }
 export interface PlaceDetailState {
-  name: string,
-  address: string,
-  reviews: ReviewState[]
+  name: string;
+  address: string;
+  reviews: ReviewState[];
 }
 export interface RouteDetailState {
-  id: string,
-  title: string,
-  description?: string,
-  address?: string
+  id: string;
+  title: string;
+  description?: string;
+  address?: string;
 }

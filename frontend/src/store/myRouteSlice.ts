@@ -1,65 +1,64 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Place } from "../types/d";
+import { MyRoute, MyRoutePlace } from "../types/d";
 
-interface MyRouteState {
-  title: string;
-  discription: string;
-  placeList: Place[];
-  selectedPlace: string;
-}
-
-const initialState: MyRouteState = {
+const initialState: MyRoute = {
   title: "",
-  discription: "",
-  placeList: [{
-    id: 1,
-    name: "남산",
-    address: "한국, 서울",
-    adds: 39,
-    views: 150,
-    imgUrl: "./routeImg/logo_norwester.png",
-  },
-  {
-    id: 2,
-    name: "남대문",
-    address: "한국, 서울",
-    adds: 39,
-    views: 150,
-    imgUrl: "./routeImg/logo_norwester.png",
-  }],
-  selectedPlace: "",
+  description: "",
+  placeList: [
+    {
+      id: 1,
+      name: "남산",
+      review: "전망이 좋습니다",
+    },
+    {
+      id: 2,
+      name: "남대문",
+      review: "한",
+    },
+  ],
 };
 
 export const myRouteSlice = createSlice({
   name: "myRoute",
   initialState,
   reducers: {
-    addPlace(state, action: PayloadAction<Place>) {
+    addPlace(state: MyRoute, action: PayloadAction<string>) {
+      const foundItem = state.placeList.find(
+        (item) => item.name === action.payload
+      );
+      if (!foundItem) {
+        const newPlace = {
+          id: state.placeList.length++,
+          name: action.payload,
+          review: "",
+        };
+        state.placeList = [...state.placeList, newPlace];
+      }
+    },
+    deletePlace(state: MyRoute, action: PayloadAction<number>) {
+      state.placeList = state.placeList.filter(
+        (place) => place.id != action.payload
+      );
+    },
+    setPlaceList(state: MyRoute, action: PayloadAction<MyRoutePlace[]>) {
+      state.placeList = action.payload;
+    },
+    setTitle(state: MyRoute, action: PayloadAction<string>) {
+      state.title = action.payload;
+    },
+    setDescription(state: MyRoute, action: PayloadAction<string>) {
+      state.description = action.payload;
+    },
+    setPlaceReview(state: MyRoute, action: PayloadAction<MyRoutePlace>) {
       const foundItem = state.placeList.find(
         (item) => item.id === action.payload.id
       );
-
-      if (!foundItem) {
-        state.placeList = [...state.placeList, action.payload];
+      if (foundItem) {
+        foundItem.review = action.payload.review;
+        console.log("리뷰작성");
       } else {
+        console.log("없음");
       }
-    },
-    deletePlace(state, action: PayloadAction<string>) {
-      state.placeList = state.placeList.filter(
-        (place) => place.name != action.payload
-      );
-    },
-    setPlaceList(state, action: PayloadAction<Place[]>) {
-      state.placeList = action.payload;
-    },
-    setTitle(state, action: PayloadAction<string>) {
-      state.title = action.payload;
-    },
-    setDescription(state, action: PayloadAction<string>) {
-      state.discription = action.payload;
-    },
-    setSelectedPlace(state, action: PayloadAction<string>) {
-      state.selectedPlace = action.payload;
     },
   },
 });
@@ -70,7 +69,7 @@ export const {
   setPlaceList,
   setTitle,
   setDescription,
-  setSelectedPlace,
+  setPlaceReview,
 } = myRouteSlice.actions;
 
 export default myRouteSlice.reducer;
