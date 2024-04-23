@@ -42,7 +42,7 @@ export default Header;
 
 const OuterBox = styled.header`
     background: white;
-    padding: 0 2vh;
+    padding: 0 20px;
 `;
 const InnerBox = styled.div`
     max-width: 1200px;

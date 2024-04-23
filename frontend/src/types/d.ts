@@ -11,7 +11,7 @@ export interface Place {
   adds: number;
   views: number;
   imgUrl: string;
-  reviews?: Review[];
+  reviews: Review[];
   images: string[];
 }
 
@@ -36,20 +36,4 @@ export interface MyRoute {
   title?: string;
   description?: string;
   placeList: MyRoutePlace[];
-}
-
-export interface ReviewState {
-  userId: string;
-  content: string;
-}
-export interface PlaceDetailState {
-  name: string;
-  address: string;
-  reviews: ReviewState[];
-}
-export interface RouteDetailState {
-  id: string;
-  title: string;
-  description?: string;
-  address?: string;
 }

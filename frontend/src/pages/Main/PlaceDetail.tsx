@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { FixedButton, Container } from "../../styles/StyledComponents";
+import { FixedButton, Container, NavBox } from "../../styles/StyledComponents";
 import { FaChevronLeft, FaRegMap } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
 import { FaMapMarkerAlt, FaShareAlt } from "react-icons/fa";
@@ -71,21 +71,6 @@ const PlaceDetail: React.FC = () => {
     )
 }
 
-const NavBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 0.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    button {
-        padding: 0.8rem;
-        &:hover {
-            background: ${(props) => props.theme.colors.primary};
-            border-radius: 1rem;
-        }
-    }
-`;
 const PlaceImageContainer = styled.div`
     width: 100%;
     min-height: 400px;

@@ -23,7 +23,7 @@ const Login: React.FC = () => {
                 <ForgotLink to="/"><TbLockSearch />아이디/비밀번호 찾기</ForgotLink>
                 <LoginButton>LOGIN</LoginButton>
                 <Link to="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=989988801672-gm6aqscq120kof1jr1f12egppbv9ks2j.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=email%20profile&response_type=code&state=HZVEzToKgZmRtvbN&service=lso&o2v=2&theme=mn&ddm=0&flowName=GeneralOAuthFlow">
-                <LoginButton>Google 아이디로 로그인</LoginButton>
+                    <LoginButton>Google 아이디로 로그인</LoginButton>
                 </Link>
                 <SignupLink to="/">회원가입</SignupLink>
             </LoginBox>
@@ -100,4 +100,5 @@ const LoginButton = styled(RoundButton)`
     &:hover {
         background: #1B3D2F;
     }
+    width: 100%;
 `;
