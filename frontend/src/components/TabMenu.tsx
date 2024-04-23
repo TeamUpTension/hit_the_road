@@ -14,10 +14,10 @@ const TabMenu: React.FC = () => {
     return (
         <>
             <Tab>
-                <TabLink to="/routes" onClick={() => handleTabClick('/routes')} isActive={activeTab === '/routes'}><FaRoute /> 여행루트</TabLink>
-                <TabLink to="/places" onClick={() => handleTabClick('/places')} isActive={activeTab === '/places'}><FaMapMarkerAlt /> 장소</TabLink>
+                <TabLink to="/routes" onClick={() => handleTabClick('/routes')} $isActive={activeTab === '/routes' || activeTab === '/'}><FaRoute /> 여행루트</TabLink>
+                <TabLink to="/places" onClick={() => handleTabClick('/places')} $isActive={activeTab === '/places'}><FaMapMarkerAlt /> 장소</TabLink>
             </Tab>
-            {activeTab === '/routes' ? <SubTitle>여행 루트를 탐색해보세요</SubTitle> : <SubTitle>인기있는 여행장소를 둘러보세요</SubTitle>}
+            {activeTab === '/routes' || activeTab === '/' ? <SubTitle>여행 루트를 탐색해보세요</SubTitle> : <SubTitle>인기있는 여행장소를 둘러보세요</SubTitle>}
             <ButtonBox>
                 <ButtonRound>한국</ButtonRound>
                 <ButtonRound>일본</ButtonRound>
@@ -37,12 +37,12 @@ const Tab = styled.div`
     display: flex;
     padding: 20px 0;
 `;
-const TabLink = styled(Link) <{ isActive: boolean }>`
+const TabLink = styled(Link) <{ $isActive: boolean }>`
     min-width: 120px;
     padding: 0.5em;
     font-size: 1em;
-    background: ${({ isActive }) => (isActive ? "black" : "white")};
-    color: ${({ isActive }) => (isActive ? "white" : "black")};
+    background: ${({ $isActive }) => ($isActive ? "black" : "white")};
+    color: ${({ $isActive }) => ($isActive ? "white" : "black")};
     border: 1px solid black;
     text-align: center;
     text-align: center;
