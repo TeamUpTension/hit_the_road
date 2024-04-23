@@ -2,8 +2,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { MyRoute, MyRoutePlace } from "../types/d";
 
 const initialState: MyRoute = {
-  title: "",
-  description: "",
+  title: "내 루트 이름",
+  description: "설명을 작성해주세요",
   placeList: [
     {
       id: 1,

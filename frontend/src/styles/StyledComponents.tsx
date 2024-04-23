@@ -23,16 +23,16 @@ export const NavBox = styled.div`
     padding: 0.8rem 0.5rem;
     font-size: 1.1rem;
     font-weight: bold;
-    button {
-        font-size: 1rem;
-        font-weight: bold;
-        padding: 0.8rem;
-        &:hover {
-            background: ${(props) => props.theme.colors.primary};
-            border-radius: 1rem;
-        }
-    }
 `;
+export const NavButton = styled.button`
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    &:hover {
+        background: ${(props) => props.theme.colors.primary};
+        border-radius: 1rem;
+    }
+`
 
 export const Description = styled.div`
     background: #faf7ed;
@@ -41,6 +41,7 @@ export const Description = styled.div`
     color: #525252;
     font-size: 0.8rem;
     border-radius: 0.8rem;
+    display: flex;
 `;
 
 export const FixedButton = styled.button`
@@ -54,6 +55,38 @@ export const FixedButton = styled.button`
     font-weight: 600;
 `;
 
+export const WrapperAlignCenter = styled.div`
+    display: flex;
+    align-items: center;
+`;
 export const Wrapper = styled.div`
     display: flex;
+`;
+
+export const StyledBtn = styled.button`
+    padding: 0.4rem;
+    margin: 0 0.3rem;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    white-space: nowrap;
+    background: ${(props) => props.theme.colors.primary};
+    border: 2px solid white;
+    &:focus {
+        border: 2px solid black ;
+    }
+    &:hover {
+      background: black;
+      color: white
+    }
+`;
+
+export const StyledInput = styled.input`
+    border: none;
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.9rem;
+    border: 2px solid ${(props) => props.theme.colors.primary};
+    padding: 0.2rem;
 `;

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { setPlaceList, deletePlace, setPlaceReview } from "../../store/myRouteSlice";
 import { MyRoutePlace } from "../../types/d";
+import { StyledBtn, StyledInput } from "../../styles/StyledComponents";
 
 const ListSection: React.FC = () => {
 
@@ -29,6 +30,7 @@ const ListSection: React.FC = () => {
       review: review
     }
     dispatch(setPlaceReview(data));
+    setEditableItem(null)
   }
 
   const dragItem = useRef<number | null>(null);  // 드래그 할 아이템의 인덱스
@@ -80,10 +82,9 @@ const ListSection: React.FC = () => {
             <div>
               {index === editableItem ?
                 <>
-                  <ReviewForm type="text" onChange={(e) => setReview(e.target.value)} value={review} />
+                  <StyledInput type="text" onChange={(e) => setReview(e.target.value)} value={review} />
                   <StyledBtn onClick={() => {
                     handleSetPlaceReview(item.id, review)
-                    setEditableItem(null)
                   }
                   }><FaPen />&nbsp;작성</StyledBtn>
                 </> :
@@ -100,31 +101,6 @@ const ListSection: React.FC = () => {
 }
 export default ListSection;
 
-const StyledBtn = styled.button`
-    padding: 0.4rem;
-    margin: 0 0.3rem;
-    border-radius: 0.3rem;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    white-space: nowrap;
-    background: ${(props) => props.theme.colors.primary};
-    border: 2px solid white;
-    &:focus {
-        border: 2px solid black ;
-    }
-    &:hover {
-      background: black;
-      color: white
-    }
-`;
-const ReviewForm = styled.input`
-    border: none;
-    width: 100%;
-    font-size: 0.9rem;
-    border: 2px solid ${(props) => props.theme.colors.primary};
-    padding: 0.2rem;
-`;
 const PlaceItem = styled.div`
     flex: 1;
     div:first-child {

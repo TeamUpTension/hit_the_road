@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { FixedButton, Container, NavBox } from "../../styles/StyledComponents";
+import { FixedButton, Container, NavBox, NavButton } from "../../styles/StyledComponents";
 import { FaChevronLeft, FaRegMap } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
 import { FaMapMarkerAlt, FaShareAlt } from "react-icons/fa";
@@ -39,11 +39,11 @@ const PlaceDetail: React.FC = () => {
     return (
         <>
             <NavBox>
-                <button onClick={handleClickBackBtn}>
+                <NavButton onClick={handleClickBackBtn}>
                     <FaChevronLeft />
-                </button>
+                </NavButton>
                 <span>{place.name}</span>
-                <button><FaShareAlt /></button>
+                <NavButton><FaShareAlt /></NavButton>
             </NavBox>
             <Container>
                 <PlaceImageContainer>

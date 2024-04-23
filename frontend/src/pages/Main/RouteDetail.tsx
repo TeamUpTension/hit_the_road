@@ -1,7 +1,7 @@
 import ListSectionRead from "../../components/Route/ListSectionRead";
 import MapSectionRead from "../../components/Route/MapSectionRead";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Description, NavBox, Wrapper } from "../../styles/StyledComponents";
+import { Container, Description, NavBox, NavButton, Wrapper } from "../../styles/StyledComponents";
 // import { FaShareAlt } from "react-icons/fa";
 // import { FaCheck } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
@@ -34,12 +34,12 @@ const RouteDetail: React.FC = () => {
     }
     return (<>
         <NavBox>
-            <button onClick={handleClickBackBtn}>
+            <NavButton onClick={handleClickBackBtn}>
                 <FaChevronLeft />
-            </button>
+            </NavButton>
             <div>{route.title}</div>
             <div></div>
-            {/* <button><FaShareAlt /></button> */}
+            {/* <NavButton><FaShareAlt /></NavButton> */}
         </NavBox>
         <Container>
             <Description>✨ {route.description}</Description>
