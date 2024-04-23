@@ -4,18 +4,11 @@ import { MyRoute, MyRoutePlace } from "../types/d";
 const initialState: MyRoute = {
   title: "내 루트 이름",
   description: "설명을 작성해주세요",
-  placeList: [
-    {
-      id: 1,
-      name: "남산",
-      review: "전망이 좋습니다",
-    },
-    {
-      id: 2,
-      name: "남대문",
-      review: "한",
-    },
-  ],
+  placeList: [],
+};
+
+const findPlaceIndexByName = (placeList: MyRoutePlace[], placeName: string) => {
+  return placeList.findIndex((place) => place.name === placeName);
 };
 
 export const myRouteSlice = createSlice({
@@ -23,16 +16,20 @@ export const myRouteSlice = createSlice({
   initialState,
   reducers: {
     addPlace(state: MyRoute, action: PayloadAction<string>) {
-      const foundItem = state.placeList.find(
-        (item) => item.name === action.payload
+      // 새로운 장소를 추가하기 전에 중복을 확인
+      const existingIndex = findPlaceIndexByName(
+        state.placeList,
+        action.payload
       );
-      if (!foundItem) {
-        const newPlace = {
-          id: state.placeList.length++,
+      if (existingIndex === -1) {
+        const newPlace: MyRoutePlace = {
+          id: state.placeList.length,
           name: action.payload,
           review: "",
         };
-        state.placeList = [...state.placeList, newPlace];
+        state.placeList.push(newPlace);
+      } else {
+        alert("이미 내 루트에 추가된 장소입니다.");
       }
     },
     deletePlace(state: MyRoute, action: PayloadAction<number>) {

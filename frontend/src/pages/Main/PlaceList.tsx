@@ -75,7 +75,7 @@ const RouteList: React.FC = () => {
         </Wrapper>
         <List>
           {items.map((item, index) => (
-            <PlaceItem key={index} index={index} place={item}></PlaceItem>
+            <PlaceItem key={index} place={item}></PlaceItem>
           ))}
           <span ref={bottomBoundaryRef}></span>
         </List>

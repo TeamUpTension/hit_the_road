@@ -62,8 +62,8 @@ const ListSection: React.FC = () => {
     {
       myRoute.placeList && myRoute.placeList.map((item: MyRoutePlace, index: number) => (
         <TimelineLi key={index} draggable
-          isDragging={index === dragItem.current}
-          isDragOver={index === dragOverItemIndex}
+          $isDragging={index === dragItem.current}
+          $isDragOver={index === dragOverItemIndex}
           onDragStart={() => dragStart(index)}
           onDragEnter={() => dragEnter(index)}
           onDragEnd={drop}
@@ -120,14 +120,14 @@ const PlaceItem = styled.div`
         }
     }
 `;
-const TimelineLi = styled.div<{ isDragging: boolean; isDragOver: boolean }>`
+const TimelineLi = styled.div<{ $isDragging: boolean; $isDragOver: boolean }>`
     padding: 0.7rem 0.7rem 0.7rem 1rem;
     display: flex;
     align-items: center;
     position: relative;
     cursor: pointer;
-    background: ${props => (props.isDragOver ? '#faf7ed' : 'none')};
-    border-bottom: ${props => (props.isDragOver ? '2px dashed red' : '1px solid #ddd')};
+    background: ${props => (props.$isDragOver ? '#faf7ed' : 'none')};
+    border-bottom: ${props => (props.$isDragOver ? '2px dashed red' : '1px solid #ddd')};
     /* 동그란 원 */
     &:before {
         content: "";

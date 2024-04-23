@@ -5,23 +5,24 @@ import { Place } from "../../types/d";
 import { CiSquarePlus } from "react-icons/ci";
 import { TiPlus } from "react-icons/ti";
 import { HiEye } from "react-icons/hi"
-import { plusAdds } from "../../store/placesSlice";
+import { addPlace } from "../../store/myRouteSlice";
 
 interface PlaceItemProps {
-    index: number;
     place: Place;
 }
 
-const PlaceItem: React.FC<PlaceItemProps> = ({ index, place }) => {
-    let dispatch = useDispatch();
+const PlaceItem: React.FC<PlaceItemProps> = ({ place }) => {
+    const dispatch = useDispatch();
+
+    const handleAddPlace = (placeName: string, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        dispatch(addPlace(placeName));
+    }
+
     return (
         <ItemLink to={`/places/${place.id}`}>
             <ItemImage $imgUrl={place.imgUrl}>
-                <KeepButton onClick={(e) => {
-                    e.stopPropagation;
-                    console.log("버튼클릭");
-                    dispatch(plusAdds(index));
-                }}>
+                <KeepButton onClick={(e) => handleAddPlace(place.name, e)}>
                     <CiSquarePlus />
                 </KeepButton>
             </ItemImage>
