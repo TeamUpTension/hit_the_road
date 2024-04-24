@@ -145,7 +145,7 @@ const TimelineLi = styled.div<{ $isDragging: boolean; $isDragOver: boolean }>`
     }
 `;
 const TimelineUl = styled.ul`
-    flex: 1;
+    width: 50%;
     /* 왼쪽 선 */
     border-left: 3px solid ${(props) => props.theme.colors.primary};
     height: 80vh;
