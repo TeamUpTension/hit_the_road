@@ -33,7 +33,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 const SlideContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
 `;
 
@@ -55,8 +55,10 @@ const PrevButton = styled.button`
   background: transparent;
   border: none;
   font-size: 24px;
+  color: white;
+  box-shadow: 0 10px 20px rgba(107, 106, 106, 0.19), 0 6px 6px rgba(194, 194, 194, 0.23);
   cursor: pointer;
-`;
+  `;
 
 const NextButton = styled.button`
   position: absolute;
@@ -66,6 +68,8 @@ const NextButton = styled.button`
   background: transparent;
   border: none;
   font-size: 24px;
+  color: white;
+  box-shadow: 0 10px 20px rgba(107, 106, 106, 0.19), 0 6px 6px rgba(194, 194, 194, 0.23);
   cursor: pointer;
 `;
 

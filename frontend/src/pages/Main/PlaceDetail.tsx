@@ -78,7 +78,7 @@ const PlaceDetail: React.FC = () => {
 
 const PlaceImageContainer = styled.div`
     width: 100%;
-    min-height: 400px;
+    min-height: 500px;
     background: #eceae4;
 `;
 const PlaceInfo = styled.ul`

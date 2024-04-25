@@ -9,7 +9,7 @@ export const handlers = [
         address: "한국, 서울",
         likes: 1,
         views: 150,
-        imgUrl: "./routeImg/logo_norwester.png",
+        imgUrl: "./routeImg/1.jpg",
         placeList: [
           {
             id: 1,
@@ -17,7 +17,7 @@ export const handlers = [
             address: "한국, 서울",
             adds: 39,
             views: 150,
-            imgUrl: "./routeImg/logo_norwester.png",
+            imgUrl: "./routeImg/2.jpg",
           },
           {
             id: 2,
@@ -25,7 +25,7 @@ export const handlers = [
             address: "한국, 서울",
             adds: 39,
             views: 150,
-            imgUrl: "./routeImg/logo_norwester.png",
+            imgUrl: "./routeImg/3.jpg",
           },
           {
             id: 3,
@@ -41,7 +41,7 @@ export const handlers = [
             address: "한국, 서울",
             adds: 39,
             views: 150,
-            imgUrl: "./routeImg/logo_norwester.png",
+            imgUrl: "./routeImg/4.jpg",
           },
         ],
       },
@@ -51,6 +51,7 @@ export const handlers = [
         address: "한국, 부산",
         likes: 39,
         views: 150,
+        imgUrl: "./routeImg/5.jpg",
         placeList: [],
       },
       {
@@ -59,7 +60,7 @@ export const handlers = [
         address: "한국, 서울",
         likes: 39,
         views: 150,
-        imgUrl: "./routeImg/logo_norwester.png",
+        imgUrl: "./routeImg/6.jpg",
         placeList: [],
       },
       {
@@ -68,7 +69,7 @@ export const handlers = [
         address: "한국, 서울",
         likes: 39,
         views: 150,
-        imgUrl: "./routeImg/logo_norwester.png",
+        imgUrl: "./routeImg/7.jpg",
         placeList: [],
       },
     ]);
@@ -81,7 +82,7 @@ export const handlers = [
         address: "한국, 서울",
         adds: 39,
         views: 150,
-        imgUrl: "./routeImg/logo_norwester.png",
+        imgUrl: "./routeImg/2.jpg",
       },
       {
         id: 2,
@@ -89,7 +90,7 @@ export const handlers = [
         address: "한국, 서울",
         adds: 39,
         views: 150,
-        imgUrl: "./routeImg/logo_norwester.png",
+        imgUrl: "./routeImg/3.jpg",
       },
       {
         id: 3,
@@ -97,7 +98,7 @@ export const handlers = [
         address: "한국, 서울",
         adds: 39,
         views: 150,
-        imgUrl: "",
+        imgUrl: "./routeImg/4.jpg",
       },
       {
         id: 4,
@@ -105,7 +106,7 @@ export const handlers = [
         address: "한국, 서울",
         adds: 39,
         views: 150,
-        imgUrl: "./routeImg/logo_norwester.png",
+        imgUrl: "./routeImg/5.jpg",
       },
     ]);
   }),
@@ -117,7 +118,7 @@ export const handlers = [
       address: "한국, 서울",
       likes: 39,
       views: 150,
-      imgUrl: "./routeImg/logo_norwester.png",
+      imgUrl: "./routeImg/1.jpg",
       placeList: [
         { id: 1, name: "성내천 벚꽃길", review: "한적하고 걷기 좋은 길" },
         { id: 2, name: "아산병원", review: "벚꽃이 가장 많은 스팟이에요" },
@@ -151,11 +152,13 @@ export const handlers = [
         },
       ],
       images: [
-        "/routeImg/logo_norwester.png",
-        "/routeImg/logo_norwester.png",
-        "/routeImg/logo_norwester.png",
-        "/routeImg/logo_norwester.png",
-        "/routeImg/logo_norwester.png",
+        "/routeImg/7.jpg",
+        "/routeImg/8.jpg",
+        "/routeImg/9.jpg",
+        "/routeImg/10.jpg",
+        "/routeImg/11.jpg",
+        "/routeImg/12.jpg",
+        "/routeImg/13.jpg",
       ],
     });
   }),
