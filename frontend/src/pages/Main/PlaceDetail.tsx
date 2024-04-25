@@ -9,10 +9,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Place, Review } from "@/types/d";
 import ImageSlider from "@/components/Place/ImageSlider";
+import { useDispatch } from "react-redux";
+import { addPlace } from "@/store/myRouteSlice";
 
 const PlaceDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [place, setPlace] = useState<Place | null>(null);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`/places/${id}`)
@@ -23,14 +27,15 @@ const PlaceDetail: React.FC = () => {
             }).catch(() => {
                 console.log("실패함")
             })
-    }, [])
+    }, [id])
 
-    const navigate = useNavigate();
     const handleClickBackBtn = () => {
         navigate(-1); // 이전 페이지로 이동
     }
-    const handlePlusPlaceBtn = () => {
-        navigate("/my-route/write")
+
+    const handleAddPlace = (placeName: string) => {
+        dispatch(addPlace(placeName));
+        navigate("/my-route/write");
     }
 
     if (!place) {
@@ -66,7 +71,7 @@ const PlaceDetail: React.FC = () => {
                     ))}
                 </PlaceReview>
             </Container>
-            <FixedButton onClick={handlePlusPlaceBtn}><TiPlus /> 내 여행루트에 담기</FixedButton>
+            <FixedButton onClick={() => handleAddPlace(place.name)}><TiPlus /> 내 여행루트에 담기</FixedButton>
         </>
     )
 }

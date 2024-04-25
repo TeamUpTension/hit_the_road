@@ -28,7 +28,9 @@ export const myRouteSlice = createSlice({
           review: "",
         };
         state.placeList.push(newPlace);
+        alert("내 루트에 추가되었습니다.");
       } else {
+        // 나중에는 토스트 메세지로 띄우도록 변경
         alert("이미 내 루트에 추가된 장소입니다.");
       }
     },
