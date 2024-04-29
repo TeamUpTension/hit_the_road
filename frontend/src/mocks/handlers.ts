@@ -1,4 +1,6 @@
 import { http, HttpResponse } from "msw";
+import { mockPlaces } from "./data";
+import { Place } from "@/types/types.ts";
 
 export const handlers = [
   http.get("/routes", () => {
@@ -161,5 +163,54 @@ export const handlers = [
         "/routeImg/13.jpg",
       ],
     });
+  }),
+  http.get(`/getPlaces`, async ({ request }) => {
+    const url = new URL(request.url);
+
+    const latitude = url.searchParams.get("latitude");
+    const longitude = url.searchParams.get("longitude");
+    const latitudeDelta = url.searchParams.get("latitudeDelta");
+    const longitudeDelta = url.searchParams.get("longitudeDelta");
+
+    const northEastBoundary = {
+      latitude: Number(latitude) + Number(latitudeDelta),
+      longitude: Number(longitude) + Number(longitudeDelta),
+    };
+
+    const southWestBoundary = {
+      latitude: Number(latitude) - Number(latitudeDelta),
+      longitude: Number(longitude) - Number(longitudeDelta),
+    };
+
+    console.log(
+      latitude,
+      longitude,
+      latitudeDelta,
+      longitudeDelta,
+      northEastBoundary,
+      southWestBoundary
+    );
+
+    const isStationLatitudeWithinBounds = (place: Place) => {
+      return (
+        place.latitude > southWestBoundary.latitude &&
+        place.latitude < northEastBoundary.latitude
+      );
+    };
+
+    const isStationLongitudeWithinBounds = (place: Place) => {
+      return (
+        place.longitude > southWestBoundary.longitude &&
+        place.longitude < northEastBoundary.longitude
+      );
+    };
+
+    const foundStations = mockPlaces.filter(
+      (place) =>
+        isStationLatitudeWithinBounds(place) &&
+        isStationLongitudeWithinBounds(place)
+    );
+
+    return HttpResponse.json(foundStations);
   }),
 ];

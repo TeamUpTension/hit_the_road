@@ -1,5 +1,5 @@
+import { MyRoutePlace } from "@/types/d";
 import styled from "styled-components";
-import { MyRoutePlace } from "../../types/d";
 
 interface ListSectionReadProps {
   placeList: MyRoutePlace[];

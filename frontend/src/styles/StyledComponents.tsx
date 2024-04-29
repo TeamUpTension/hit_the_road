@@ -45,6 +45,7 @@ export const Description = styled.div`
 `;
 
 export const FixedButton = styled.button`
+    z-index: 100;
     width: 100%;
     position : fixed;
     bottom : 0;

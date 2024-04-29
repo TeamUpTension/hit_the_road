@@ -1,5 +1,8 @@
 import { Status, Wrapper } from "@googlemaps/react-wrapper";
-import { GoogleMaps } from "../Map/GoogleMaps";
+import GoogleMap from "../Map/GoogleMap";
+import MarkerContainer from "../Map/MarkerContainer";
+
+const API_KEY: string = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
 const render = (status: Status) => {
     switch (status) {
@@ -8,21 +11,17 @@ const render = (status: Status) => {
         case Status.FAILURE:
             return <div>에러 발생</div>;
         case Status.SUCCESS:
-            return <div>로드 성공</div>;
+            return (<>
+                <GoogleMap />
+                <MarkerContainer />
+            </>);
     }
 };
 
-export default function MapSectionRead() {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
-    if (!apiKey) {
-        return <div>Cannot display the map: google maps api key missing</div>;
-    }
+function MapSectionRead() {
     return (
-        <Wrapper apiKey={apiKey} render={render} style={{
-            flex: 1,
-            height: "100vh"
-        }} >
-            <GoogleMaps />
-        </Wrapper>
+        <Wrapper id="mapWrapper" apiKey={API_KEY} render={render} libraries={['marker']} />
     )
 }
+
+export default MapSectionRead
